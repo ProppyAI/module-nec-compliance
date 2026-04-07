@@ -1,0 +1,31 @@
+{
+  "name": "nec-compliance",
+  "version": "1.0.0",
+  "description": "NEC code compliance — code lookups, derating calculations, AFCI/GFCI requirements",
+  "category": "ops",
+  "entities": {
+    "produces": [],
+    "consumes": ["job", "estimate"],
+    "extends": {}
+  },
+  "tools": [
+    { "name": "check-compliance", "description": "Check a job or estimate for NEC compliance issues", "permissions": ["job:read", "estimate:read"] },
+    { "name": "lookup-code", "description": "Look up a specific NEC code section", "permissions": [] },
+    { "name": "calculate-derating", "description": "Calculate wire derating for conduit fill", "permissions": ["estimate:read"] }
+  ],
+  "hooks": [
+    { "event": "ComplianceCheckFailed", "action": "flag-estimate", "type": "post" }
+  ],
+  "dependencies": [],
+  "externalServices": [],
+  "config": {
+    "nec_edition": { "type": "string", "default": "2023" },
+    "local_amendments": { "type": "string", "default": "" },
+    "afci_required_circuits": { "type": "string", "default": "bedroom,living,dining,closet" },
+    "gfci_required_circuits": { "type": "string", "default": "kitchen,bathroom,garage,outdoor,laundry" }
+  },
+  "agents": [
+    { "name": "compliance-agent", "description": "NEC code checks, derating calculations, compliance verification", "capabilities": ["nec:check", "derating:calculate", "code:lookup"] }
+  ],
+  "cron": []
+}
