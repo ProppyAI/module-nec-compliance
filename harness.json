@@ -1,0 +1,25 @@
+{
+  "vertical": "",
+  "client": "",
+  "channels": {
+    "rc": { "enabled": true },
+    "discord": { "enabled": false },
+    "slack": { "enabled": false }
+  },
+  "model": "claude-sonnet-4-6",
+  "auto_pr": true,
+  "hybrid_threshold": 0.7,
+  "modules": {
+    "enabled": [],
+    "config": {}
+  },
+  "permissions": {
+    "mode": "supervised",
+    "rules": []
+  },
+  "hooks": {
+    "timeout": 30,
+    "enabled": true
+  },
+  "integrations": {}
+}
